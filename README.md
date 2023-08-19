@@ -24,8 +24,9 @@
     ├── preprocessing.py\
     └── visualize.py
 
-## Instructions
-- Pipeline can be run 
+## Instructions for running and hyperparameter modification. 
+- Pipeline can be run by executing `./run.sh`
+- For modifying parameters, edit the values in `model_mgr.py`. 
 
 ## Pipeline
 1. `dataloader.py`
