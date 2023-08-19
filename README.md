@@ -28,6 +28,33 @@
 - Pipeline can be run 
 
 ## Pipeline
+1. `dataloader.py`
+   - `Dataloader` class handles data load.
+   - check file exists
+   - loads the data using sqlite3 into dataframe
+3. `preprocessing.py`
+   - `Preprocessor` class handles preprocessing tasks.
+   - formats the data values
+   - conducts feature engineering
+   - data imputation & dropping missing values.
+   - dummy variable encoding.
+   - standardize the data using `StandardScaler`
+   - conducts train-test split and returns `X_test`, `X_train`, `y_test`, `y_train`
+4. `build_models.py`
+   - `ModelBuilder` class handles model training and evaluation.
+   - obtains paramters and models from `ModelMgr` from `model_mgr.py`
+   - conduct model training and hyperparameter tuning.
+   - evaluates model using testset and prints test errors.
+5. `visualize.py`
+    - `Visualizer` class visualizes model performance and output graph.     
+6. `pipeline.py`
+    - runs the pipeline.
+    - loads data using `Dataloader`
+    - preprocesses using `Preprocessor`
+    - builds and evaluates model using `ModelBuilder`
+    - output model performance using `Visualizer`
+9. `run.sh`
+    - executable to run `pipeline.py`
 
 ## Feature Preprocessing Summary
 
@@ -48,19 +75,17 @@
 
 ## EDA Findings
 
-Based on EDA findings, histogram of residuals and Q-Q plot shows that residuals are approximately normal, Residual vs Fitted plot shows that there is some non-linearities that are not captured if we use a linear model. We expect that non-linear models may be better in predicting 'final_test' scores. 
+- Based on EDA findings, histogram of residuals and Q-Q plot shows that residuals are approximately normal, Residual vs Fitted plot shows that there is some non-linearities that are not captured if we use a linear model. We expect that non-linear models may be better in predicting 'final_test' scores. 
 
 
-The variables effects on 'final_test' makes sense. \
-We expect that smaller 'class_size' may lead to better test outcomes due to more focus on individual students. \
-Students who do not have CCA are likely to have better test outcomes as they have more time to work on their studies. \
-'attendance_rate' greatly impacts 'final_test' scores. We interpret that there may be some scores reserved for attendance. \
-Students with access to 'tuition' are correlated to having better 'final_test' scores. 
-
-'final_test' are less correlated to 'gender', 'mode_of_transport', 'school_type', 'bag_color', and 'age'.
-
-Unexpectedly, 'hours_per_week' of study have a slight negative correlation to 'final_test.' Perhaps maybe these are struggling students. \
-Also, it also seems like students with visual 'learning_style' are correlated to have better 'final_test.'
+- The variables effects on 'final_test' makes sense. 
+- We expect that smaller 'class_size' may lead to better test outcomes due to more focus on individual students. 
+- Students who do not have CCA are likely to have better test outcomes as they have more time to work on their studies. 
+-'attendance_rate' greatly impacts 'final_test' scores. We interpret that there may be some scores reserved for attendance. 
+- Students with access to 'tuition' are correlated to having better 'final_test' scores. 
+- 'final_test' are less correlated to 'gender', 'mode_of_transport', 'school_type', 'bag_color', and 'age'.
+- Unexpectedly, 'hours_per_week' of study have a slight negative correlation to 'final_test.' Perhaps maybe these are struggling students. 
+- Also, it also seems like students with visual 'learning_style' are correlated to have better 'final_test.'
 
 
 ## Model Choices
