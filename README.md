@@ -122,8 +122,6 @@ Hyperparamters to be tested in `model_mgr.py`:
 | SVM Poly        | `{'model__C': [0.1, 1, 10], 'model__kernel': ['poly'], 'model__degree': [2, 3]}`|
 | KNN             | `{'model__n_neighbors': [3, 5, 7], 'model__weights': ['uniform', 'distance']}`|
 
-
-
 Below are the results: 
 
 | Model           | Best Parameters                                                   | Best CV Score | Test MSE           |
@@ -141,4 +139,43 @@ Below are the results:
 
 ![model evaluation results](Results.png)
 
+Random Forest features ranking of descending Importance:
 
+| Rank | Feature                               | Importance |
+|------|---------------------------------------|------------|
+| 1    | class_size| 0.386933|
+| 2    | number_of_siblings_2| 0.159365|
+| 3    | number_of_siblings_1| 0.107700|
+| 4    | hours_per_week| 0.107155   |
+| 5    | learning_style_Visual| 0.085111|
+| 6    | attendance_rate| 0.065401|
+| 7    | direct_admission_Yes| 0.033158|
+| 8    | tuition_Yes| 0.029173|
+| 9    | CCA_None| 0.011408|
+| 10   | gender_Male|0.002546|
+| 11   | att_type_B| 0.001263   |
+| 12   | age_16.0| 0.001135   |
+| 13   | mode_of_transport_walk|0.001124   |
+| 14   | hours_of_sleep| 0.001089   |
+| 15   | bag_color_yellow| 0.001009|
+| 16   | bag_color_red| 0.000963|
+| 17   | CCA_Clubs| 0.000830   |
+| 18   | mode_of_transport_public transport| 0.000803|
+| 19   | bag_color_blue| 0.000745|
+| 20   | school_type_mixed| 0.000682|
+| 21   | bag_color_white| 0.000664|
+| 22   | CCA_Sports| 0.000661|
+| 23   | bag_color_green|0.000605   |
+| 24   | school_type_girl_sch| 0.000455|
+| 25   | att_type_C| 0.000023|
+
+## Discussion
+
+- Based on the test performance, we note that non-linear models work better compared to linear models (this has been previously observed in the EDA). 
+- Tree-based methods is shown to work very well, followed by SVM radial.
+- Linear models show poor test performance, with minimal improvements seen with regularization.
+- This indicates that there linear models are unsuitable for predicting `final_test` scores. 
+
+## Limitations and Further Improvement
+- Hyperparameter tuning in this project only search through a small range of values. More experimentations with hyperparameters could improve performance. 
+- Other non-parametric non-linear models such as neural networks should be explored. 
