@@ -175,7 +175,7 @@ Random Forest features ranking of descending Importance:
 - Based on the test performance, we note that non-linear models work better compared to linear models (this has been previously observed in the EDA). 
 - Tree-based methods is shown to work very well, followed by SVM radial.
 - Linear models show poor test performance, with minimal improvements seen with regularization.
-- This indicates that there linear models are unsuitable for predicting `final_test` scores. 
+- This indicates that linear models are unsuitable for predicting `final_test` scores. 
 
 ## Limitations and Further Improvement
 - Hyperparameter tuning in this project only search through a small range of values. More experimentations with hyperparameters could improve performance. 
