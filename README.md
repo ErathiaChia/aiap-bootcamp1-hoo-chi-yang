@@ -90,7 +90,55 @@
 
 
 ## Model Choices
+Models selected are a mix of parametric & non-parametric, and linear & non-linear models, to test which types of models provide best performance.
 
+List of models:
+1. Parameteric, Linear
+- Linear Regression
+- With Regularization (Lasso, Ridge, ElasticNet)
+- SVM (Linear)
+2. Parametric, Non-Linear
+- SVM (Poly, Radial)
+3. Non-Parametric, Non-Linear
+- KNN
+- Random Forest, XGBoost
 
 ## Model Evaluation
+
+Models are trained using 5 folds cross-validation and gridsearchCV over hyperparameters listed in `model_mgr.py` for hyperparameter tuning. 
+Models are evaluated based on testset MSE between predictions and true values. Model with the lowest testset MSE is evaluated as the best model. 
+
+Hyperparamters to be tested in `model_mgr.py`:
+
+| Model           | Hyperparameters                                                                                     |
+|-----------------|----------------------------------------------------------------------------------------------------|
+| Ridge           | `{'model__alpha': [0.001, 0.01, 0.1, 1, 10, 100]}`|
+| Lasso           | `{'model__alpha': [0.001, 0.01, 0.1, 1, 10, 100]}`|
+| ElasticNet      | `{'model__alpha': [0.001, 0.01, 0.1, 1, 10, 100], 'model__l1_ratio': [0.2, 0.5, 0.8]}`|
+| Random Forest   | `{'model__n_estimators': [50, 100, 200], 'model__max_depth': [None, 10, 20, 30], 'model__min_samples_split': [2, 5, 10]}` |
+| XGBoost         | `{'model__n_estimators': [50, 100, 200], 'model__max_depth': [3,5,7], 'model__learning_rate': [0.01, 0.5, 1], 'model__subsample': [0.5, 0.7, 1], 'model__colsample_bytree': [0.5, 0.7, 1]}` |
+| SVM Linear      | `{'model__C': [0.1, 1, 10], 'model__kernel': ['linear']}`|
+| SVM Radial      | `{'model__C': [0.1, 1, 10], 'model__kernel': ['rbf']}`|
+| SVM Poly        | `{'model__C': [0.1, 1, 10], 'model__kernel': ['poly'], 'model__degree': [2, 3]}`|
+| KNN             | `{'model__n_neighbors': [3, 5, 7], 'model__weights': ['uniform', 'distance']}`|
+
+
+
+Below are the results: 
+
+| Model           | Best Parameters                                                   | Best CV Score | Test MSE           |
+|-----------------|-------------------------------------------------------------------|-----------------------------|--------------------|
+| Linear Regression | `{}`| 78.6164520814928|78.40808777019475|
+| Ridge             | `{'model__alpha': 10}`|78.61575778595065|78.40971494992637|
+| Lasso             | `{'model__alpha': 0.01}`| 78.58978373206449 | 78.39838153489376|
+| ElasticNet        | `{'model__alpha': 0.01, 'model__l1_ratio': 0.8}` | 78.59462763932376  | 78.40406466120936 |
+| Random Forest     | `{'model__max_depth': 10, 'model__min_samples_split': 10, 'model__n_estimators': 200}` | 28.28978533199007 | 26.610824603156797 |
+| XGBoost           | `{'model__colsample_bytree': 1, 'model__learning_rate': 0.5, 'model__max_depth': 5, 'model__n_estimators': 50, 'model__subsample': 1}` | 31.57206820413258 | 29.82944792196203  |
+| SVM Linear        | `{'model__C': 1, 'model__kernel': 'linear'}` | 79.04817897351535| 79.0875049273558|
+| SVM Radial        | `{'model__C': 10, 'model__kernel': 'rbf'}`| 59.03509738200438| 56.06850993630905|
+| SVM Poly          | `{'model__C': 10, 'model__degree': 3, 'model__kernel': 'poly'}` | 65.6610019696263| 63.27527569976111|
+| KNN               | `{'model__n_neighbors': 7, 'model__weights': 'distance'}`| 75.10440697379228| 76.21880437341136|
+
+
+
 
