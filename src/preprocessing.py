@@ -4,11 +4,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 import numpy as np
 
-# 'class_size', 'school_type'
-#  'age', 'number_of_siblings' in categorical
-# immpute and handle missing values
-
-
 
 class Preprocessor:
     def __init__(self, df,seed=2023):
