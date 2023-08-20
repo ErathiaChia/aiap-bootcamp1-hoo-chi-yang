@@ -139,6 +139,6 @@ Below are the results:
 | SVM Poly          | `{'model__C': 10, 'model__degree': 3, 'model__kernel': 'poly'}` | 65.6610019696263| 63.27527569976111|
 | KNN               | `{'model__n_neighbors': 7, 'model__weights': 'distance'}`| 75.10440697379228| 76.21880437341136|
 
-
+![model evaluation results](Results.png)
 
 
