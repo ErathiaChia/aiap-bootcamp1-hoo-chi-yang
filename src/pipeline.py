@@ -15,7 +15,7 @@ def main():
     
     print('===============================')
     print('Loading data...')
-    loader = DataLoader('data/score.db')
+    loader = DataLoader('../data/score.db')
     df = loader.import_data()
 
     print('Dataload completed!')
